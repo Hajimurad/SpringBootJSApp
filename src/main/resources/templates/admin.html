@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head><th:block th:include="fragments/header :: head"></th:block></head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div sec:authorize="hasAuthority('ADMIN')">
+    <div class="row">
+        <div class="col-2 mt-3 p-0">
+            <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="admin_tab" data-toggle="pill" href="#admin_panel" role="tab">Admin</a>
+                <a class="nav-link" id="user_tab" data-toggle="pill" href="#user_panel" role="tab" aria-controls="user_panel" aria-selected="true">User</a>
+            </div>
+        </div>
+        <div class="col-10 p-0">
+            <div class="tab-content bg-light p-2">
+                <div class="tab-pane fade show active pl-3" style="height: 700px;" id="admin_panel" role="tabpanel" aria-labelledby="admin-panel-tab">
+                    <h1>Admin panel</h1>
+                    <nav>
+                        <div class="nav nav-tabs" role="tablist">
+                            <a class="nav-item nav-link active" data-toggle="tab" role="tab" href="#usersTable">Users table</a>
+                            <a class="nav-item nav-link" data-toggle="tab" role="tab" href="#newUser">New User</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active border" id="usersTable" role="tabpanel">
+                            <div class="pl-3 pt-1 d-flex border-bottom"><h4> All users</h4></div>
+                            <div class="bg-white p-3">
+                                <table id="userTable" class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Age</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="newUser" aria-labelledby="newUser-tab">
+                            <div class="card">
+                                <h5 class="card-header">Add new user</h5>
+                                <div class="container bg-white text-center p-3">
+                                    <form id="newUserForm">
+                                        <div class="col-md-3 offset-md-4 text-center">
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">First name</span>
+                                                <input type="text" class="form-control" minlength="3" id="firstName" name="firstName"
+                                                       placeholder="First name" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">Last Name</span>
+                                                <input type="text" class="form-control" id="lastName"
+                                                       name="lastName" placeholder="Last name">
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">Age</span>
+                                                <input type="text" step="0.01" maxlength="3" minlength="1" class="form-control"
+                                                       id="age1" name="age" placeholder="Age">
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">Email</span>
+                                                <input type="email" class="form-control" id="username" name="username"
+                                                       placeholder="Email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">Password</span>
+                                                <input type="password" class="form-control" id="password"
+                                                       name="password"  placeholder="Password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span class="font-weight-bold">Role</span>
+                                                <select multiple class="form-control"
+                                                        name="rolesSelect" size="2" id="roles">
+                                                </select>
+                                            </div>
+                                            <span class="font-weight-bold"></span>
+                                            <button type="submit" class="btn btn-success btn-lg" id="save1UserButton">
+                                                Add new user
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="user_panel" role="tabpanel" aria-labelledby="user_panel">
+                    <div class="container-fluid">
+                        <div class="h1">User information-page</div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" aria-labelledby="list-tab">
+                                <div class="card">
+                                    <h5 class="card-header">About user</h5>
+                                    <div class="card-body">
+                                        <table id="principalUser" class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Age</th>
+                                                <th>Email</th>
+                                                <th>Role</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/modal :: defaultModal"></div>
+<div th:replace="fragments/form :: userForm"></div>
+<div th:replace="fragments/table :: viewUserTable"></div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: script"></div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en">
+<head> <th:block th:include="fragments/header :: head"></th:block> </head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div sec:authorize="hasAuthority('USER')">
+    <div class="row">
+        <div class="col-2 mt-3 p-0">
+            <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="nav-item nav-link active ml-2" data-toggle="pill" href="#user_panel"  role="tab"
+                   aria-controls="user_panel" aria-selected="true">User</a>
+            </div>
+        </div>
+        <div class="col-10 p-0">
+            <div class="tab-content bg-light p-2">
+                <div class="tab-pane fade show active pl-3" style="height: 700px;" id="user_panel" role="tabpanel"
+                     aria-labelledby="user_panel">
+                    <h1>User information-page</h1>
+                    <div class="pl-3 pt-1 d-flex border-top border-left border-right"><h4> About user</h4></div>
+                    <div class="bg-white p-3">
+                        <table id="principalUser" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+<div th:replace="fragments/footer :: script"></div>
+</body>
+</html>
