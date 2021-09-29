@@ -1,12 +1,15 @@
 package com.springboot_rest_js.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -32,6 +35,7 @@ public class Role implements GrantedAuthority {
     }
 
 //    @JsonBackReference
+//    @JsonIgnore
 //    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
 //    private Set<User> users;
 

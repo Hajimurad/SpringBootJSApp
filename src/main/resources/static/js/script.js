@@ -158,35 +158,35 @@ async function editUser(modal, id) {
     modal.find(modalFooter).append(primaryButton);
 
     userJson.then(user => {
-        modal.find('#id').val(user.id);
-        modal.find('#firstName').val(user.firstName);
-        modal.find('#lastName').val(user.lastName);
-        modal.find('#age').val(user.age);
-        modal.find('#username').val(user.username);
-        modal.find('#password');
+        modal.find('#idForm').val(user.id);
+        modal.find('#firstNameForm').val(user.firstName);
+        modal.find('#lastNameForm').val(user.lastName);
+        modal.find('#ageForm').val(user.age);
+        modal.find('#usernameForm').val(user.username);
+        modal.find('#passwordForm');
         rolesJson.then(roles => {
             roles.forEach(role => {
-                modal.find('#roles').append(new Option(role.role, role.id, false,false));
+                modal.find('#rolesForm').append(new Option(role.role, role.id, false,false));
             });
         });
     });
 
     $('#updateUserButton').click(async function(){
-        let id = userForm.find('#id').val().trim();
-        let firstName = userForm.find('#firstName').val().trim();
-        let lastName = userForm.find('#lastName').val().trim();
-        let age = userForm.find('#age').val().trim();
-        let username = userForm.find('#username').val().trim();
-        let password = userForm.find('#password').val().trim();
-        let rolesArray = modal.find('#roles').val()
+        let id = userForm.find('#idForm').val().trim();
+        let firstName = userForm.find('#firstNameForm').val().trim();
+        let lastName = userForm.find('#lastNameForm').val().trim();
+        let age = userForm.find('#ageForm').val().trim();
+        let username = userForm.find('#usernameForm').val().trim();
+        let password = userForm.find('#passwordForm').val().trim();
+        let rolesArray = modal.find('#rolesForm').val()
         let roles = []
 
         let data = {
             id: id,
-            name: firstName,
-            surname: lastName,
+            firstName: firstName,
+            lastName: lastName,
             age: age,
-            email: username,
+            username: username,
             password: password,
             roles: roles
         }

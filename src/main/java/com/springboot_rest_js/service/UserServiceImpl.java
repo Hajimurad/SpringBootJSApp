@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void update(User user) {
 
-        if (user.getRoles().isEmpty()) {
+        if (user.getRoles().size() == 0) {
             user.setRoles(Set.of(roleDAO.readById(2L)));
         }
 

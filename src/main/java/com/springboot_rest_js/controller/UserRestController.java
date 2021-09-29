@@ -1,6 +1,7 @@
 package com.springboot_rest_js.controller;
 
 import com.springboot_rest_js.entity.User;
+import com.springboot_rest_js.service.RoleService;
 import com.springboot_rest_js.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import java.util.List;
 public class UserRestController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public UserRestController(UserService userService) {
+    public UserRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/user")
@@ -55,6 +58,8 @@ public class UserRestController {
 
     @PutMapping("/admin")
     public ResponseEntity<?> update(@RequestBody User user) {
+
+        User user1 = userService.findByUsername(user.getUsername());
 
         if (user != null) {
             userService.update(user);
